@@ -6,7 +6,8 @@ langchain-huggingface
 langchain-text-splitters
 faiss-cpu
 pypdf
-streamlit
-sentence-transformers
 requests
 huggingface-hub
+sentence-transformers --no-deps
+torch --index-url https://download.pytorch.org/whl/cpu
+transformers
