@@ -1,7 +1,7 @@
-
 from fastapi import FastAPI, UploadFile
 from rag_pipeline import process_pdf, query_pdf
 import tempfile
+import os
 
 app = FastAPI()
 
@@ -28,5 +28,10 @@ def ask_question(q: str):
     except Exception as e:
         import traceback
         error_detail = traceback.format_exc()
-        print("FULL ERROR:", error_detail)  # backend terminal mein dikhega
+        print("FULL ERROR:", error_detail)
         return {"answer": f"Error: {str(e)} | Detail: {error_detail[-300:]}"}
+
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
